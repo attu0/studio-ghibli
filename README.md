@@ -1,71 +1,56 @@
-# Studio Ghibli Website
+# Studio Ghibli - Magical World of Animation
 
-A magical website showcasing Studio Ghibli films with beautiful animations and interactive elements.
+A beautiful, interactive website showcasing the magical world of Studio Ghibli films. Built with React and Vite, featuring smooth animations, parallax effects, and a responsive design.
 
 ## Features
 
-- Stunning visual design with magical animations
-- Interactive movie cards with hover effects
-- Character showcase with auto-scrolling
-- Responsive design for all devices
-- Custom cursor with spotlight effect
-- Beautiful transitions and hover effects
+- 🎬 Interactive movie showcase with detailed information
+- 🎨 Beautiful animations and transitions
+- 👆 Custom cursor and interactive elements
+- 📱 Fully responsive design
+- 🎵 Background audio with controls
+- ✨ Magical hover effects and visual feedback
 
 ## Technologies Used
 
-- HTML5
-- CSS3 (with modern features like CSS Grid, Flexbox)
-- JavaScript (Vanilla)
-- Custom animations and transitions
-- Responsive design principles
+- React 18
+- Vite
+- CSS3 with modern features
+- JavaScript ES6+
 
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/studio-ghibli.git
-```
-
-2. Navigate to the project directory:
-```bash
+git clone https://github.com/attu0/studio-ghibli.git
 cd studio-ghibli
 ```
 
-3. Open the project:
-- Open `index.html` in your browser
-- Or use a local development server:
-  ```bash
-  # Using Python
-  python -m http.server 5173
-  
-  # Using Node.js
-  npx serve
-  ```
-
-## Project Structure
-
-```
-studio-ghibli/
-├── src/
-│   ├── components/
-│   │   ├── sections/
-│   │   │   └── Sections.css
-│   │   └── Footer.css
-│   ├── scripts/
-│   │   └── cursor.js
-│   ├── assets/
-│   │   └── images/
-│   └── index.html
-└── README.md
+2. Install dependencies:
+```bash
+npm install
 ```
 
-## Contributing
+3. Start the development server:
+```bash
+npm run dev
+```
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Build for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+The build files will be in the `dist` directory.
+
+## Deployment
+
+The project is configured for deployment on Vercel. Simply connect your GitHub repository to Vercel, and it will automatically deploy your main branch.
 
 ## License
 
@@ -74,4 +59,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Studio Ghibli for their incredible films and inspiration
-- All contributors who helped make this project better
+- All the amazing artists and creators in the Studio Ghibli community
+- The React and Vite communities for their excellent tools and documentation
