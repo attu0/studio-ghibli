@@ -1,0 +1,1484 @@
+/* Update color variables */
+:root {
+  --primary-orange: #ff8c00;
+  --primary-orange-glow: rgba(255, 140, 0, 0.3);
+  --accent-orange: #ff4500;
+  --accent-gold: #ffa500;
+  --text-light: rgba(255, 255, 255, 0.9);
+  --text-dim: rgba(255, 255, 255, 0.7);
+  --gradient-dark: linear-gradient(135deg, rgba(40, 26, 12, 0.95), rgba(30, 20, 10, 0.85));
+  --gradient-accent: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+}
+
+/* Update section backgrounds */
+.section {
+  background: var(--gradient-dark);
+}
+
+/* Update headings */
+h1, h2, h3 {
+  color: var(--text-light);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  animation: titleFloat 6s ease-in-out infinite;
+}
+
+/* Update hover effect to keep text white */
+h1:hover, h2:hover, h3:hover {
+  color: var(--text-light);
+  text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 140, 0, 0.3);
+}
+
+/* Update titleFloat animation */
+@keyframes titleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Update specific heading styles while maintaining float */
+.home-section h1 {
+  font-size: 4.5rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-light);
+  animation: titleFloat 6s ease-in-out infinite;
+}
+
+.about-section h2,
+.movies-section h2,
+.characters-section h2,
+.contact-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Ensure popup headings don't float */
+.movie-popup h2,
+.character-popup h3,
+.character-info h3 {
+  animation: none;
+}
+
+/* Enhanced stroke effect on hover */
+h1::after, h2::after, h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+}
+
+h1:hover::after, h2:hover::after, h3:hover::after {
+  transform: scaleX(1);
+  box-shadow: 
+    0 0 15px var(--primary-orange-glow),
+    0 0 30px var(--primary-orange-glow);
+  opacity: 1;
+}
+
+/* Update movie cards */
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.1);
+}
+
+.movie-poster:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);
+  border-color: rgba(255, 140, 0, 0.3);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-poster:hover img {
+  transform: scale(1.05);
+}
+
+.poster-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.movie-poster:hover .poster-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Update character cards */
+.character-card {
+  flex: 0 0 160px;
+  scroll-snap-align: start;
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 15px 15px 45px 15px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 140, 0, 0.1);
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Simplify hover effect */
+.character-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-orange);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 20px var(--primary-orange-glow);
+}
+
+/* Update character info hover */
+.character-info {
+  padding: 1rem;
+  min-height: 120px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  border-radius: 0 0 45px 12px;
+  transition: all 0.3s ease;
+}
+
+/* Remove 3D transform styles */
+.character-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 45px 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.character-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.character-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-light);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.character-info h4 {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.4rem;
+}
+
+.character-info p {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Update popup styles */
+.movie-popup-overlay,
+.movie-popup,
+.popup-content,
+.popup-image,
+.popup-details,
+.popup-title,
+.movie-info,
+.movie-description,
+.movie-details,
+.close-button {
+  display: none;
+}
+
+/* Update buttons */
+button {
+  background: linear-gradient(135deg, var(--primary-orange), rgba(255, 140, 0, 0.8));
+  color: #000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--primary-orange-glow);
+}
+
+/* Update text colors */
+p {
+  color: var(--text-light);
+}
+
+/* Update section dividers */
+.section::after {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.section::before {
+  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.8));
+}
+
+/* Add magical sparkle effects */
+.character-info h3::after,
+.typing-title::after {
+  background: var(--gradient-accent);
+}
+
+/* Update hover effects */
+.movie-poster:hover .poster-overlay,
+.character-card:hover .character-info {
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.9),
+    rgba(155, 77, 202, 0.3)
+  );
+}
+
+.section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  animation: sectionFadeIn 1s ease-out;
+  transition: transform 0.6s ease-in-out;
+  border: none;
+  background-color: #000000;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.section:hover .video-background {
+  transform: scale(1.05);
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 6rem 2rem;
+  opacity: 0;
+  animation: contentFadeIn 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Home Section */
+.home-section {
+  position: relative;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.home-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.home-section .section-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+  margin-top: 10vh;
+}
+
+.home-section h1 {
+  font-size: 4.5rem;
+  margin-bottom: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: var(--text-light);
+  animation: titleFloat 6s ease-in-out infinite;
+}
+
+.home-section p {
+  font-size: 1.8rem;
+  opacity: 0.9;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  max-width: 800px;
+  margin: 2rem auto;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out 0.3s backwards;
+}
+
+/* Add specific style for the welcome text */
+.welcome-text {
+  font-size: 2.2rem;
+  margin: 3rem auto;
+  color: var(--text-light);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Add specific style for the description text */
+.description-text {
+  font-size: 1.4rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* About Section */
+.about-section {
+  position: relative;
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.about-section .section-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.about-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.about-section p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding: 0 1rem;
+}
+
+/* Movies Section */
+.movies-section {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 100vh;
+  margin: 0;
+  border: none;
+}
+
+.movies-section::after {
+  display: none;
+}
+
+.movies-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  z-index: 0;
+  transition: transform 0.1s ease-out;
+  transform: translate(
+    calc(var(--mouse-x, 0.5) * 20px - 10px),
+    calc(var(--scroll-y, 0) * -30px)
+  );
+}
+
+.movies-section .section-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 2rem;
+}
+
+.movies-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  padding-top: 2rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  transform: translateY(calc(var(--scroll-y, 0) * 30px));
+  transition: transform 0.1s ease-out;
+}
+
+.movie-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.1);
+}
+
+.movie-poster:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);
+  border-color: rgba(255, 140, 0, 0.3);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie-poster:hover img {
+  transform: scale(1.05);
+}
+
+.poster-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.movie-poster:hover .poster-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Remove all popup-related styles */
+.movie-popup-overlay,
+.movie-popup,
+.popup-content,
+.popup-image,
+.popup-details,
+.popup-title,
+.movie-info,
+.movie-description,
+.movie-details,
+.close-button {
+  display: none;
+}
+
+/* Remove popup animations */
+@keyframes closePopup {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.movie-popup-closing {
+  animation: none;
+}
+
+/* Update typing animation styles */
+.typing-title {
+  font-size: 2rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.typing-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* Magic sparkle effect */
+.typing-text::after {
+  content: '✨';
+  position: absolute;
+  opacity: 0;
+  animation: sparkle 2s linear infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, -20px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Contact Section */
+.contact-section {
+  position: relative;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-height: 100vh;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.contact-section .section-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: formAppear 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 140, 0, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  transform-origin: left;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  transform: scale(1.02);
+  border-color: #ffa500;
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange));
+  color: #000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+  box-shadow: 0 5px 15px var(--primary-orange-glow);
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section Transitions */
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.8));
+  z-index: 10;
+}
+
+/* Add thin black bars between sections */
+.home-section,
+.about-section,
+.movies-section,
+.characters-section,
+.contact-section {
+  border-bottom: 15px solid #000000;
+}
+
+/* Remove the last section's border */
+.contact-section {
+  border-bottom: none;
+}
+
+/* Characters Section */
+.characters-section {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 100vh;
+  margin: 0;
+  border: none;
+}
+
+/* Update side black bars - only keep the right bar */
+.characters-section::before {
+  display: none; /* Remove left bar */
+}
+
+.characters-section::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+/* Update the gradient for remaining bar */
+.characters-section::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.7)
+  );
+}
+
+.characters-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  z-index: 0;
+  transition: transform 0.1s ease-out;
+  transform: translate(
+    calc(var(--mouse-x, 0.5) * 20px - 10px),
+    calc(var(--scroll-y, 0) * -30px)
+  );
+}
+
+.characters-section .section-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem 4rem;
+}
+
+.characters-scroll-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 15px;
+  margin: 0;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide WebKit scrollbar */
+.characters-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Add spotlight effect */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 200px at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(255, 250, 205, 0.15),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: soft-light;
+}
+
+/* Add cursor tracking script */
+@keyframes cursorGlow {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+/* Update cursor styles to work with spotlight */
+* {
+  cursor: none;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 250, 205, 0.3);
+  border: 2px solid rgba(255, 250, 205, 0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+  animation: cursorGlow 2s infinite;
+}
+
+/* Cursor states for interactive elements */
+button:hover ~ .custom-cursor,
+.close-button:hover ~ .custom-cursor,
+.movie-poster:hover ~ .custom-cursor,
+.character-card:hover ~ .custom-cursor,
+.contact-form button:hover ~ .custom-cursor,
+.nav-menu a:hover ~ .custom-cursor,
+.home-nav a:hover ~ .custom-cursor {
+  transform: scale(1.5);
+  background: rgba(255, 250, 205, 0.5);
+}
+
+/* Update grid to be scrollable */
+.characters-grid {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 4rem;
+  overflow: visible;
+  margin: 0;
+  padding-bottom: 2rem;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Remove auto-scroll animation */
+.characters-grid {
+  animation: none;
+  transform: none;
+}
+
+/* Add grab cursor states */
+.characters-scroll-container:active {
+  cursor: grabbing;
+}
+
+/* Update animation delays to only affect fadeInUp */
+.character-card:nth-child(2) { animation-delay: 0.2s; }
+.character-card:nth-child(3) { animation-delay: 0.3s; }
+.character-card:nth-child(4) { animation-delay: 0.4s; }
+.character-card:nth-child(5) { animation-delay: 0.5s; }
+.character-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Character Popup */
+.character-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.character-popup {
+  position: relative;
+  background: var(--gradient-dark);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--primary-orange-glow);
+  animation: popupEnter 0.3s ease-out;
+}
+
+.character-popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.character-popup-close:hover {
+  background: rgba(255, 140, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.character-popup-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.character-popup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.character-popup-content {
+  text-align: center;
+  color: white;
+}
+
+.character-popup-content h3 {
+  font-size: 2rem;
+  color: var(--primary-orange);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.character-popup-content h4 {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+}
+
+.character-popup-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@keyframes popupEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .character-popup {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .character-popup-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .character-popup-content h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Magic Click Effect */
+@keyframes magicClick {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.8);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px 15px rgba(255, 140, 0, 0);
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+    transform: scale(1);
+  }
+}
+
+@keyframes magicRipple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4),
+                0 0 0 0 rgba(255, 140, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px 15px rgba(255, 140, 0, 0.2),
+                0 0 40px 25px rgba(255, 140, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 30px 15px rgba(255, 140, 0, 0),
+                0 0 40px 25px rgba(255, 140, 0, 0);
+  }
+}
+
+/* Apply to all buttons and clickable elements */
+button,
+.close-button,
+.movie-poster,
+.character-card,
+.contact-form button,
+.nav-menu a,
+.home-nav a {
+  position: relative;
+  overflow: hidden;
+}
+
+button:active,
+.close-button:active,
+.movie-poster:active,
+.character-card:active,
+.contact-form button:active,
+.nav-menu a:active,
+.home-nav a:active {
+  animation: magicClick 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Add the magical effect pseudo-element */
+button::after,
+.close-button::after,
+.movie-poster::after,
+.character-card::after,
+.contact-form button::after,
+.nav-menu a::after,
+.home-nav a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 140, 0, 0.8);
+  opacity: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+button:active::after,
+.close-button:active::after,
+.movie-poster:active::after,
+.character-card:active::after,
+.contact-form button:active::after,
+.nav-menu a:active::after,
+.home-nav a:active::after {
+  animation: magicRipple 0.8s ease-out;
+  opacity: 1;
+}
+
+/* Enhance contact form button */
+.contact-form button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange));
+  color: #000;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+  box-shadow: 0 5px 15px var(--primary-orange-glow);
+}
+
+.contact-form button:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Enhance close button */
+.close-button:active {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.3) 0%,
+    rgba(255, 140, 0, 0.1) 100%
+  );
+}
+
+/* Enhance movie poster click effect */
+.movie-poster:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 30px rgba(255, 140, 0, 0.3);
+}
+
+/* Enhance character card click effect */
+.character-card:active {
+  transform: scale(0.98);
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 30px var(--primary-orange-glow);
+}
+
+/* Navigation links click effect */
+.nav-menu a:active,
+.home-nav a:active {
+  color: var(--primary-orange);
+  text-shadow: 0 0 15px var(--primary-orange-glow);
+}
+
+/* Custom Cursor */
+* {
+  cursor: url('/cursors/wand-normal.png') 0 0, auto;
+}
+
+/* Change cursor for clickable elements */
+button,
+.close-button,
+.movie-poster,
+.character-card,
+.contact-form button,
+.nav-menu a,
+.home-nav a {
+  cursor: url('/cursors/wand-pointer.png') 0 0, pointer !important;
+  transition: filter 0.3s ease;
+}
+
+/* Add a magical glow effect when hovering over interactive elements */
+button:hover,
+.close-button:hover,
+.movie-poster:hover,
+.character-card:hover,
+.contact-form button:hover,
+.nav-menu a:hover,
+.home-nav a:hover {
+  cursor: url('/cursors/wand-glow.png') 0 0, pointer !important;
+  filter: drop-shadow(0 0 8px var(--primary-orange-glow));
+}
+
+/* Add magical sparkle effect on click */
+button:active,
+.close-button:active,
+.movie-poster:active,
+.character-card:active,
+.contact-form button:active,
+.nav-menu a:active,
+.home-nav a:active {
+  animation: magicSparkle 0.5s ease-out;
+}
+
+@keyframes magicSparkle {
+  0% {
+    filter: drop-shadow(0 0 8px var(--primary-orange-glow))
+           brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px var(--primary-orange-glow))
+           brightness(1.2);
+  }
+  100% {
+    filter: drop-shadow(0 0 8px var(--primary-orange-glow))
+           brightness(1);
+  }
+}
+
+.windmill {
+  position: relative;
+  width: 120px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.blade {
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  background: var(--primary-orange);
+  left: 50%;
+  transform-origin: center top;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+}
+
+.blade:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+.blade:nth-child(2) { transform: translateX(-50%) rotate(90deg); }
+.blade:nth-child(3) { transform: translateX(-50%) rotate(180deg); }
+.blade:nth-child(4) { transform: translateX(-50%) rotate(270deg); }
+
+@keyframes spin {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+.windmill-head {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #3a3a3a;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.windmill-blades {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform-origin: 50% 50%;
+  animation: spin 4s linear infinite;
+  z-index: 2;
+}
+
+.windmill-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 70px;
+  background: linear-gradient(90deg, #4a4a4a, #2a2a2a);
+  clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Styles */
+.logo {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-blade {
+  position: absolute;
+  width: 6px;
+  height: 30px;
+  background: var(--primary-orange);
+  left: 50%;
+  transform-origin: center top;
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+}
+
+.logo-blade:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+.logo-blade:nth-child(2) { transform: translateX(-50%) rotate(90deg); }
+.logo-blade:nth-child(3) { transform: translateX(-50%) rotate(180deg); }
+.logo-blade:nth-child(4) { transform: translateX(-50%) rotate(270deg); }
+
+.logo-head {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #3a3a3a;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo-blades {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  transform-origin: 50% 50%;
+  animation: spin 4s linear infinite;
+  z-index: 2;
+}
+
+.logo-text {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary-orange);
+  text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 0.5s;
+}
+
+@keyframes spin {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Update section dividers with blur */
+.home-section,
+.about-section,
+.movies-section,
+.characters-section,
+.contact-section {
+  position: relative;
+}
+
+/* Add blur effect to horizontal black bars */
+.home-section::after,
+.about-section::after,
+.movies-section::after,
+.characters-section::after,
+.characters-section::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+/* Update side black bars with blur */
+.characters-section::before,
+.characters-section::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  width: 15px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.characters-section::before {
+  left: 0;
+}
+
+.characters-section::after {
+  right: 0;
+}
+
+/* Add subtle gradient to the blur effect */
+.home-section::after,
+.about-section::after,
+.movies-section::after,
+.characters-section::after,
+.characters-section::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.7)
+  );
+}
+
+/* Close animation */
+@keyframes closePopup {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.movie-popup-closing {
+  animation: none;
+} 
